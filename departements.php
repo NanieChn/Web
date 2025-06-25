@@ -1,4 +1,8 @@
 <!-- Collaborate with  andriantsehenoanja926@gmail.com -->
+<?php 
+    include("inc/fonction.php");
+    $departe = return_departement();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -14,21 +18,21 @@
                 <th>Département</th>
                 <th>Manager</th>
             </tr>
+            <?php foreach($departe as $departe){ ?>
+        <tr>
+        <th><a href="employes.php?num=<?= $departe['dept_no']; ?>"><?= $departe['dept_name']; ?></a></th>
+       
+       <th>  <?php $manager = return_manager_en_cours($departe['dept_no']); 
+            foreach($manager as $manager){?>
+            <p><?php $employer = return_employees($manager['emp_no']); 
+            echo $employer['first_name']," ", $employer['last_name'] ; ?></p>
+            <?php } ?>  </th>
+        </tr>
+            
+        <?php } ?>
         </thead>
         <tbody>
-            <?php
-            $sql = "SELECT d.id, d.nom AS departement, e.nom AS manager_nom, e.prenom AS manager_prenom
-                    FROM departement d
-                    LEFT JOIN employe e ON d.manager_id = e.id";
-            $stmt = $pdo->query($sql);
-
-            while ($row = $stmt->fetch()) {
-                echo "<tr>
-                        <td>{$row['departement']}</td>
-                        <td>{$row['manager_prenom']} {$row['manager_nom']}</td>
-                      </tr>";
-            }
-            ?>
+           
         </tbody>
     </table>
 </body>
