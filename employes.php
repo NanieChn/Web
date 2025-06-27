@@ -22,7 +22,7 @@
             </tr>
             <?php foreach($tous_employe as $tous_employe){ ?>
             <tr><?php $employe = return_employees($tous_employe['emp_no']); ?>
-                <th><?= $employe['first_name'] ;?></th>
+            <th><a href="fiche_emp.php?num=<?= $employe['emp_no'] ;?>"><?= $employe['first_name'] ;?></a></th>
                 <th><?=  $employe['last_name'] ; ?></th>
             </tr>    
             <?php } ?>

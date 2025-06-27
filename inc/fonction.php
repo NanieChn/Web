@@ -45,5 +45,32 @@
         return $tab;
     }
 
+    function return_fiche_employee($id_emp){
+        $sql = "SELECT * FROM titles where emp_no = '$id_emp'";
+        $sql1 = mysqli_query(dbconnect(),$sql);
+        $tab = [];
+        while($valiny=mysqli_fetch_assoc($sql1)){
+            $tab [] =$valiny;
+        }
+        return $tab;
+    }
+    function return_departement_employe_iray($id_emp){
+        $sql = "SELECT * FROM `dept_emp` join departments on emp_no = '$id_emp' and departments.dept_no = dept_emp.dept_no";
+        $sql1 = mysqli_query(dbconnect(),$sql);
+        $valiny=mysqli_fetch_assoc($sql1);
+        return $valiny;
+
+    }
+    function return_fiche_salaire($id_emp){
+        $sql = "SELECT * FROM salaries where emp_no = '$id_emp'";
+        $sql1 = mysqli_query(dbconnect(),$sql);
+        $tab = [];
+        while($valiny=mysqli_fetch_assoc($sql1)){
+            $tab [] =$valiny;
+        }
+        return $tab;
+    }
+
+
 
 ?> 
