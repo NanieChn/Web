@@ -1,5 +1,7 @@
 <?php 
     include('inc/fonction.php');
+    session_start();
+
     $id_emp = $_GET['num'];
     $employee = return_employees($id_emp);
     $fiche = return_fiche_employee($id_emp);

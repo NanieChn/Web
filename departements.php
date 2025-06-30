@@ -1,7 +1,11 @@
 <!-- Collaborate with  andriantsehenoanja926@gmail.com -->
 <?php 
     include("inc/fonction.php");
+    session_start();
+
     $departe = return_departement();
+    $_SESSION['i'] = 0;
+    $_SESSION['scr_emp'] = 0;
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -17,36 +21,65 @@
   </div>
 
   <div>
-    <div class="bd-example">
-    <form class="row g-3">
+
+    <form class="row g-3" action="departement_rech.php" method = "post">
       <div class="col-md-4">
         <label for="validationServer01" class="form-label">Departement</label>
-        <input type="text" class="form-control is-valid" id="validationServer01" value="Customer Service" required="">
+        <input type="text" class="form-control is-valid" id="validationServer01" name="rech" required="">
         <div class="valid-feedback">
           Looks good!
         </div>
       </div>
+      <div class="col-12">
+        <button class="btn btn-primary" type="submit">Submit form</button>
+      </div>
+    </form>  
+
+
+    <form action="enregistre_emp_rec.php" method="post" >
       <div class="col-md-4">
-        <label for="validationServer02" class="form-label">Name</label>
-        <input type="text" class="form-control is-valid" id="validationServer02" value="Jean" required="">
+        <label for="validationServer02" class="form-label">Name employe</label>
+        <input type="text" class="form-control is-valid" id="validationServer02" name="rech" required="">
         <div class="valid-feedback">
           Looks good!
         </div>
-      </div>
-      <div class="col-md-4">
-        <label for="validationServerUsername" class="form-label">Age</label>
-        <div class="input-group has-validation">
-          <input type="text" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3" required="">
-          <div class="invalid-feedback">
-            Please choose a number.
-          </div>
-        </div>
-      </div>
       </div>
       <div class="col-12">
         <button class="btn btn-primary" type="submit">Submit form</button>
       </div>
     </form>
+
+
+    <form action="reche_par_age.php" method = "post">
+      <div class="col-md-4">
+        <div>
+            <label for="validationServerUsername" class="form-label">Age min</label>
+              <div class="input-group has-validation">
+               <input type="text" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3" required="" name="min">
+              <div class="invalid-feedback">
+            Please choose a number.
+              </div>
+            </div>
+        </div>
+        <div>
+            <label for="validationServerUsername" class="form-label">Age max</label>
+              <div class="input-group has-validation">
+               <input type="text" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3" required="" name="max">
+              <div class="invalid-feedback">
+            Please choose a number.
+              </div>
+            </div>
+        </div>
+        
+      </div>
+      <div class="col-12">
+        <button class="btn btn-primary" type="submit">Submit form</button>
+      </div>
+      </form>
+      
+      
+      
+    
     </div>
   </div>
 </article>
@@ -60,7 +93,7 @@
             </tr>
             <?php foreach($departe as $departe){ ?>
         <tr>
-        <th><a href="employes.php?num=<?= $departe['dept_no']; ?>"><?= $departe['dept_name']; ?></a></th>
+        <th><a href="employes_traite.php?num=<?= $departe['dept_no']; ?>"><?= $departe['dept_name']; ?></a></th>
        
        <th>  <?php $manager = return_manager_en_cours($departe['dept_no']); 
             foreach($manager as $manager){?>

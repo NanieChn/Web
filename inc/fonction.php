@@ -35,8 +35,8 @@
         return $valiny;
     }
     // 
-    function return_departement_employe($departe){
-        $sql = "SELECT * FROM `dept_emp` where dept_no = '$departe'";
+    function return_departement_employe($departe,$affichage){
+        $sql = "SELECT * FROM `dept_emp` where dept_no = '$departe'limit $affichage,20";
         $sql1 = mysqli_query(dbconnect(),$sql);
         $tab = [];
         while($valiny=mysqli_fetch_assoc($sql1)){
@@ -70,6 +70,41 @@
         }
         return $tab;
     }
+    function recherche_departement($rech,$affichage){
+        $sql = "SELECT * FROM departments WHERE dept_name like '%$rech%' or dept_name like '$rech%' limit $affichage,20";
+        $sql1 = mysqli_query(dbconnect(),$sql);
+        $tab = [];
+    if(mysqli_num_rows($sql1)>0){
+        while($valiny=mysqli_fetch_assoc($sql1)){
+            $tab [] =$valiny;
+        }
+    }
+        return $tab;
+    }
+    function recherche_employe($rech,$affichage){
+        $sql = "SELECT * FROM employees WHERE first_name like '%$rech%' or first_name like '$rech%' or last_name like '%$rech%' or last_name like '$rech%' limit $affichage,20";
+        echo $sql;
+        $sql1 = mysqli_query(dbconnect(),$sql);
+        $tab = [];
+    if(mysqli_num_rows($sql1)>0){
+        while($valiny=mysqli_fetch_assoc($sql1)){
+            $tab [] =$valiny;
+        }
+    }
+        return $tab;
+    }
+    function recherche_employe_par_age($min,$max,$affichage){
+        $sql = "SELECT * FROM employees WHERE DATEDIFF(NOW(),birth_date)/365 > $min and DATEDIFF(NOW(),birth_date)/365 < $max limit $affichage,20";
+        $sql1 = mysqli_query(dbconnect(),$sql);
+        $tab = [];
+    if(mysqli_num_rows($sql1)>0){
+        while($valiny=mysqli_fetch_assoc($sql1)){
+            $tab [] =$valiny;
+        }
+    }
+        return $tab;
+    }
+
 
 
 
