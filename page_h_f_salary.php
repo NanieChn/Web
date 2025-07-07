@@ -1,6 +1,6 @@
 <?php 
     include('inc/fonction.php');
-    $departe = return_departement();
+    $departe = return_isa_h_f();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -16,18 +16,16 @@
             <tr>
                 <th>nombre femme</th>
                 <th>nombre homme</th>
-                <th>Departement</th>
-                <th>numero depatement</th>
+                <th>emploi</th>
                 <th>salaire moyen</th>
               </tr>
             <?php foreach($departe as $departe){ ?>
         <tr>
-                <th><?= return_isa_h_f($departe['dept_no'])['isa_femme']; ?></th>
-                <th><?= return_isa_h_f($departe['dept_no'])['isa_home']; ?></th>
+                <th><?= $departe['isa_femme']; ?></th>
+                <th><?= $departe['isa_home']; ?></th>
+                <th><?= $departe['title'] ?></th>
+                <th><?= return_moyen($departe['title'])['moyen'] ?> $</th>
        
-                <th> <?= $departe['dept_name'] ?></th>
-                <th><?= $departe['dept_no']  ?></th>
-                <th><?= return_moyen($departe['dept_no'])['moyen'] ?></th>
         </tr>
             
         <?php } ?>

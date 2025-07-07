@@ -117,20 +117,45 @@
         return $valiny;
     }
 
-    function return_isa_h_f($d00i){
-        $sql="SELECT * FROM v_isa_femme_homme where dept_no = '$d00i'";
+    function return_isa_h_f(){
+        $sql="SELECT * FROM v_isa_femme_homme";
         $sql1 = mysqli_query(dbconnect(),$sql);
-        $valiny=mysqli_fetch_assoc($sql1);
-        return $valiny;
+        $tab = [];
+    if(mysqli_num_rows($sql1)>0){
+        while($valiny=mysqli_fetch_assoc($sql1)){
+            $tab [] =$valiny;
+        }
+    }
+        return $tab;
     }
 
     function return_moyen($d00i){
-        $sql="SELECT avg(salary) moyen,dept_no from v_salaire_empl where dept_no = '$d00i';";
+        $sql="SELECT avg(salary) moyen,title from v_empl_tittle where title = '$d00i';";
         $sql1 = mysqli_query(dbconnect(),$sql);
         $valiny=mysqli_fetch_assoc($sql1);
         return $valiny;
     }
 
-
+    function prendre_dept($dept_name){
+        $sql="SELECT * FROM departments where dept_name = '$dept_name'";
+        $sql1 = mysqli_query(dbconnect(),$sql);
+        $valiny=mysqli_fetch_assoc($sql1);
+        return $valiny;
+    }
+    function ajout_emp_de_departement($d00i,$date){
+        $sql="INSERT INTO dept_emp(dept_no,from_date,to_date) values ('$d00i','$date','9999-01-01')";
+        echo $sql;
+        $sql1 = mysqli_query(dbconnect(),$sql);
+    }
+    function changer_de_departement($id_emp){
+        $sql="UPDATE dept_emp SET to_date = NOW where emp_no = '$id_emp'";
+        $sql1 = mysqli_query(dbconnect(),$sql);
+    }
+    function return_long_temp_empt($d00i){
+        $sql="SELECT max((datediff(daty2,daty1))/365) max from v_empl_tittle where emp_no = '$d00i'";
+        $sql1 = mysqli_query(dbconnect(),$sql);
+        $valiny=mysqli_fetch_assoc($sql1);
+        return $valiny;
+    }
 
 ?> 
