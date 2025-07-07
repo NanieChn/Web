@@ -36,5 +36,6 @@
            
         </tbody>
     </table>
+    <a href="departements.php" class="btn btn-secondary mb-3">← Retour</a>
 </body>
 </html>

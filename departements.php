@@ -17,7 +17,7 @@
 </head>
 <body class="container py-5">
 
-<a href="page_h_f_salary.php" class="btn btn-secondary mb-3">homme femme</a>
+<a href="page_h_f_salary.php" class="btn btn-secondary mb-3">homme femme comparer par nombre</a>
 
 <article class="my-3" id="validation">
   <div class="bd-heading sticky-xl-top align-self-start mt-5 mb-3 mt-xl-0 mb-xl-2">
