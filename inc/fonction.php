@@ -1,7 +1,7 @@
 <?php 
     include("connection.php");
     function return_departement(){
-        $sql = "SELECT * FROM `departments`";
+        $sql = "SELECT * FROM `departments` order by dept_no";
         $sql1 = mysqli_query(dbconnect(),$sql);
         $tab = [];
         while($valiny=mysqli_fetch_assoc($sql1)){
@@ -70,6 +70,12 @@
         }
         return $tab;
     }
+    function return_plus_long_emploi(){
+        $sql = "SELECT max(moyen) m,dept_no,dept_name FROM v_moyen_age_emploi";
+        $sql1 = mysqli_query(dbconnect(),$sql);
+        $valiny=mysqli_fetch_assoc($sql1);
+        return $valiny;
+    }
     function recherche_departement($rech,$affichage){
         $sql = "SELECT * FROM departments WHERE dept_name like '%$rech%' or dept_name like '$rech%' limit $affichage,20";
         $sql1 = mysqli_query(dbconnect(),$sql);
@@ -104,7 +110,26 @@
     }
         return $tab;
     }
+    function recherche_departemen_nbr_employe($d00i){
+        $sql="SELECT count(emp_no) isa FROM dept_emp where dept_no = '$d00i'";
+        $sql1 = mysqli_query(dbconnect(),$sql);
+        $valiny=mysqli_fetch_assoc($sql1);
+        return $valiny;
+    }
 
+    function return_isa_h_f($d00i){
+        $sql="SELECT * FROM v_isa_femme_homme where dept_no = '$d00i'";
+        $sql1 = mysqli_query(dbconnect(),$sql);
+        $valiny=mysqli_fetch_assoc($sql1);
+        return $valiny;
+    }
+
+    function return_moyen($d00i){
+        $sql="SELECT avg(salary) moyen,dept_no from v_salaire_empl where dept_no = '$d00i';";
+        $sql1 = mysqli_query(dbconnect(),$sql);
+        $valiny=mysqli_fetch_assoc($sql1);
+        return $valiny;
+    }
 
 
 

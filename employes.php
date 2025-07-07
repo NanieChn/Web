@@ -1,7 +1,7 @@
 <?php 
     include("inc/fonction.php");
     session_start();
-    echo $_SESSION['departe'];
+    // echo $_SESSION['departe'];
     $tous_employe = return_departement_employe($_SESSION['departe'],$_SESSION['scr_emp']);
     $dep = return_departement_iray($_SESSION['departe']);
 ?>
@@ -14,10 +14,11 @@
 </head>
 <body class="container py-5">
 <a href="traite_prec_emp.php" class="btn btn-secondary mb-3">← precedent</a>
-<a href="traite_suiv_emp.php" class="btn btn-secondary mb-3">← suivant</a>
+<a href="traite_suiv_emp.php" class="btn btn-secondary mb-3"> suivant </a>
 
     <h1 class="mb-4">Employés du département : <?= $dep['dept_name'] ?></h1>
     <a href="traite_dep.php" class="btn btn-secondary mb-3">← Retour</a>
+    
     <table class="table table-bordered">
         <thead class="table-light">
             <tr>

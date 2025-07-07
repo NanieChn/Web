@@ -16,6 +16,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="container py-5">
+<h1>l'emploi le plus long : <?= return_plus_long_emploi()['dept_name'] ?> ,duree : <?= return_plus_long_emploi()['m'] ?> ans</h1>
     <h1 class="mb-4">fiche de <?= $employee['first_name']; ?></h1>
     <a href="employes.php?num=<?= $departe['dept_no']; ?>" class="btn btn-secondary mb-3">← Retour</a>
     <table class="table table-bordered">
